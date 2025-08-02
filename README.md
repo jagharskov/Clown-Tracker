@@ -14,4 +14,4 @@ Finally, run the script with:
 ```
 python ClownTracker.py
 ```
-Viewer data will be saved continuously to a .csv file in the script’s directory.
+A _viewer_data_ folder will be created inside the script's directory, where viewer data will be saved continuously to a .csv file.
