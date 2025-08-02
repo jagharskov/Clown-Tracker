@@ -18,7 +18,7 @@ args = parser.parse_args()
 CHANNEL_NAME = args.channel
 
 if args.channel is None:
-    print("Error: Please provide a streamer username.")
+    print("Error: Please provide a twitch channel name.")
     exit(1)
 
 # Enter the number of seconds between every check here.
