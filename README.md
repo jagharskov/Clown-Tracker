@@ -1,12 +1,18 @@
-A simple python script for fetching and outputting viewer numbers from a twitch page in real time. Made to analyze possible inconsistensies due to viewbotting. The information is stored in a .csv file, created in the same folder based on the channel name and date, which you can then analyze however you want.
-
-The script uses a headless firefox process, so Firefox is required on your system.
-
-Installation:
-pip install -r requirements.txt
-
-How to use:
-Change the 'CHANNEL_NAME' variable in ClownTracker.py to the twitch channel of your choice. Only enter the channel name, not the full URL.
-run the script with 'python ClownTracker.py'
+## A simple python script for fetching and outputting viewer numbers from a twitch page in real time. Created in order to make it easier to analyze viewer number inconsistensies, without relying on on websites like _Twitchtracker_ or _Streamscharts_ that only poll viewer numbers every 10 minutes.
 
 <img width="2487" height="956" alt="image" src="https://github.com/user-attachments/assets/77062ccc-f292-44d1-8842-e8422ddae987" />
+
+## Installating prerequisits:
+```
+pip install -r requirements.txt
+```
+The script also uses a headless Firefox process, you will need Firefox on your computer.
+
+## How to use:
+Change the __CHANNEL_NAME__ variable in _ClownTracker.py_ to the twitch channel of your choice. Only enter the channel name, not the full URL.
+Finally run the script with:
+```
+python ClownTracker.py
+```
+
+
