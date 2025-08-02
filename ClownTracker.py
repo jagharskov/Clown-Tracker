@@ -1,7 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from webdriver_manager.firefox import GeckoDriverManager
 from datetime import datetime
 import time
 import csv
@@ -50,9 +52,11 @@ def main():
 
     csv_file = get_csv_filename()
     initialize_csv(csv_file)
-
-    driver = webdriver.Firefox(options=options)
-    print(f"Fetching {url} and waiting {loading_time} seconds for it to load...") 
+    
+    service = Service(GeckoDriverManager().install())
+    driver = webdriver.Firefox(service=service, options=options)
+    
+    print(f"Fetching {url} and waiting...") 
     driver.get(url)
     time.sleep(loading_time)  # Let the page load
     
