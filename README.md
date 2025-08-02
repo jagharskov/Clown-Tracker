@@ -1,4 +1,4 @@
-## A simple python script for fetching and outputting viewer numbers from a twitch page in real time. Created in order to make it easier to analyze viewer number inconsistencies, without relying on on websites like _Twitchtracker_ or _Streamscharts_ that only poll viewer numbers every 10 minutes.
+## A simple python script for fetching and outputting viewer numbers from a twitch page in real time. Created in order to make it easier to analyze viewer number inconsistencies, without relying on on websites like _Twitchtracker_ or _Streamscharts_ that only poll viewer numbers every 10 to 20 minutes.
 
 <img width="2487" height="956" alt="image" src="https://github.com/user-attachments/assets/77062ccc-f292-44d1-8842-e8422ddae987" />
 
