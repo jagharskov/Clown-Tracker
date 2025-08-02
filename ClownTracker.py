@@ -34,7 +34,7 @@ def initialize_csv(filename):
     if not os.path.exists(filename):
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(['uptime', 'viewer_count'])
+            writer.writerow(['uptime', 'viewer_count', 'percentage_change'])
 
 def get_viewer_count(driver):
     try:
@@ -71,6 +71,7 @@ def main():
     
     start_time = time.time()
     previous_viewers = None
+    percent_change = 0
     err_check = 0
     
     while True:
@@ -105,7 +106,7 @@ def main():
                 print(f"{CHANNEL_NAME} [Stream uptime: {uptime} | Script uptime: {formatted_uptime}] Viewers: {viewers}{change_str}")
                 with open(csv_file, 'a', newline='') as f:
                     writer = csv.writer(f)
-                    writer.writerow([uptime, viewers])
+                    writer.writerow([uptime, viewers, percent_change])
                     
                 previous_viewers = viewers
                 
