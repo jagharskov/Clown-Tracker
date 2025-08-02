@@ -73,27 +73,22 @@ def main():
     previous_viewers = None
     percent_change = 0
     err_check = 0
-    
-    while True:
-        
-        try:
+    try:
+        while True:
             if err_check > 4:
                 print("Viewer count could not be found after repeated attempts. "
-                "The stream is either offline, or twitch has changed it's layout and "
-                "you need to fix 'element' in the get_viewer_count() function. Exiting...")
+                      "The stream is either offline, or Twitch has changed its layout. Exiting...")
                 break
-                
+
             uptime = get_stream_time(driver)
             viewers = get_viewer_count(driver)
-            
-            # Calculate script uptime
+
             elapsed_time = time.time() - start_time
             formatted_uptime = str(timedelta(seconds=int(elapsed_time)))
-            
+
             if viewers is not None:
                 err_check = 0
-                
-                # Calculate percentage change if previous_viewers is available
+
                 if previous_viewers is not None:
                     try:
                         percent_change = ((viewers - previous_viewers) / previous_viewers) * 100
@@ -101,22 +96,31 @@ def main():
                     except ZeroDivisionError:
                         change_str = " (N/A%)"
                 else:
-                    change_str = ""               
-                    
-                print(f"{CHANNEL_NAME} [Stream uptime: {uptime} | Script uptime: {formatted_uptime}] Viewers: {viewers}{change_str}")
+                    change_str = ""
+
+                print(f"{CHANNEL_NAME} [Stream uptime: {uptime} | Script uptime: {formatted_uptime}] "
+                      f"Viewers: {viewers}{change_str}")
+
                 with open(csv_file, 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([uptime, viewers, percent_change])
-                    
+
                 previous_viewers = viewers
-                
             else:
                 err_check += 1
                 print(f"Viewer count not found. Checking again... (Attempt {err_check}/5)")
-        except Exception as e:
-            print(f"Error: {e}")
 
-        time.sleep(POLL_INTERVAL)
+            time.sleep(POLL_INTERVAL)
+
+    except KeyboardInterrupt:
+        print("\nInterrupted by user. Exiting...")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+    finally:
+        print("Closing browser...")
+        driver.quit()     
+
+       
 
 if __name__ == "__main__":
     main()
