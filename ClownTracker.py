@@ -102,7 +102,7 @@ def main():
                 else:
                     change_str = ""               
                     
-                print(f"[Stream uptime: {uptime} | Script uptime: {formatted_uptime}] Viewers: {viewers}{change_str}")
+                print(f"{CHANNEL_NAME} [Stream uptime: {uptime} | Script uptime: {formatted_uptime}] Viewers: {viewers}{change_str}")
                 with open(csv_file, 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([uptime, viewers])
@@ -111,7 +111,7 @@ def main():
                 
             else:
                 err_check += 1
-                print(f"[{uptime}] Viewer count not found. Checking again... (Attempt {err_check}/5)")
+                print(f"Viewer count not found. Checking again... (Attempt {err_check}/5)")
         except Exception as e:
             print(f"Error: {e}")
 
