@@ -2,7 +2,7 @@
 
 <img width="2487" height="956" alt="image" src="https://github.com/user-attachments/assets/77062ccc-f292-44d1-8842-e8422ddae987" />
 
-## Installating prerequisits:
+## Installating prerequisites:
 ```
 pip install -r requirements.txt
 ```
