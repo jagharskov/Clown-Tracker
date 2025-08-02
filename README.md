@@ -14,5 +14,5 @@ Finally run the script with:
 ```
 python ClownTracker.py
 ```
-
+The script will create and continously store all information inside a .csv file inside it's home directory.
 
