@@ -18,9 +18,10 @@ POLL_INTERVAL = 10
 
 def get_csv_filename():
     current_date = datetime.now().strftime("%Y-%m-%d")
-    return f"{CHANNEL_NAME}_viewer_scrape_{current_date}.csv"
+    return os.path.join("viewer_data", f"{CHANNEL_NAME}_viewer_scrape_{current_date}.csv")
 
 def initialize_csv(filename):
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     if not os.path.exists(filename):
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
@@ -65,9 +66,9 @@ def main():
         
         try:
             if err_check > 4:
-                print("Viewer count could not be found after repeated attempts. \
-                The stream is either offline, or twitch has changed it's layout and \
-                you need to replace 'element' in the get_viewer_count() function. Exiting...")
+                print("Viewer count could not be found after repeated attempts. "
+                "The stream is either offline, or twitch has changed it's layout and "
+                "you need to fix 'element' in the get_viewer_count() function. Exiting...")
                 break
                 
             uptime = get_stream_time(driver)
