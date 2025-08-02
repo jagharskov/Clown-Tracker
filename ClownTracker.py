@@ -60,7 +60,6 @@ def main():
     print(f"Fetching {url} and waiting...") 
     driver.get(url)
     time.sleep(loading_time)  # Let the page load
-    
  
     while True:
         
@@ -82,7 +81,7 @@ def main():
                     writer.writerow([uptime, viewers])
             else:
                 err_check += 1
-                print(f"[{uptime}] Viewer count not found. Hold on checking again...")
+                print(f"[{uptime}] Viewer count not found. Hold on checking again... (Attempt {err_check}/5")
         except Exception as e:
             print(f"Error: {e}")
 
