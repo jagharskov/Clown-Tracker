@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from webdriver_manager.firefox import GeckoDriverManager
 from datetime import datetime
+from datetime import timedelta
 import argparse
 import time
 import csv
@@ -54,7 +55,6 @@ def get_stream_time(driver):
 def main():
     url = "https://www.twitch.tv/" + CHANNEL_NAME
     loading_time = 10
-    err_check = 0
     
     options = FirefoxOptions()
     options.add_argument("--headless")
@@ -68,7 +68,11 @@ def main():
     print(f"Fetching {url} and waiting...") 
     driver.get(url)
     time.sleep(loading_time)  # Let the page load
- 
+    
+    start_time = time.time()
+    previous_viewers = None
+    err_check = 0
+    
     while True:
         
         try:
@@ -81,12 +85,30 @@ def main():
             uptime = get_stream_time(driver)
             viewers = get_viewer_count(driver)
             
+            # Calculate script uptime
+            elapsed_time = time.time() - start_time
+            formatted_uptime = str(timedelta(seconds=int(elapsed_time)))
+            
             if viewers is not None:
                 err_check = 0
-                print(f"[{uptime}] Viewers: {viewers}")
+                
+                # Calculate percentage change if previous_viewers is available
+                if previous_viewers is not None:
+                    try:
+                        percent_change = ((viewers - previous_viewers) / previous_viewers) * 100
+                        change_str = f" ({percent_change:+.2f}%)"
+                    except ZeroDivisionError:
+                        change_str = " (N/A%)"
+                else:
+                    change_str = ""               
+                    
+                print(f"[ Stream uptime: {uptime} | Script uptime: {formatted_uptime}] Viewers: {viewers}{change_str}")
                 with open(csv_file, 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([uptime, viewers])
+                    
+                previous_viewers = viewers
+                
             else:
                 err_check += 1
                 print(f"[{uptime}] Viewer count not found. Checking again... (Attempt {err_check}/5)")
