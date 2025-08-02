@@ -6,7 +6,7 @@
 ```
 pip install -r requirements.txt
 ```
-The script also uses a headless Firefox process, you will need Firefox on your computer.
+This script uses a headless Firefox browser via Selenium. You will need to have Firefox installed on your system.
 
 ## How to use:
 Change the __CHANNEL_NAME__ variable in _ClownTracker.py_ to the twitch channel of your choice. Only enter the channel name, not the full URL.
