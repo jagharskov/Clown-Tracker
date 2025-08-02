@@ -9,7 +9,7 @@ pip install -r requirements.txt
 This script uses a headless Firefox process via Selenium. You will need to have Firefox installed on your system.
 
 ## How to use:
-Run ClownTracker.py with the channel name as an argument. Do not use the full URL. Example:
+Run **ClownTracker.py** with the channel name as an argument. Do not use the full URL. Example:
 ```
 python ClownTracker.py quin69
 ```
