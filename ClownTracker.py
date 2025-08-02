@@ -5,12 +5,20 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from webdriver_manager.firefox import GeckoDriverManager
 from datetime import datetime
+import argparse
 import time
 import csv
 import os
 
-# Enter the streamer username here
-CHANNEL_NAME = 'quin69'
+parser = argparse.ArgumentParser(description="Run the stream tool.")
+parser.add_argument('channel', help="Streamer username (channel name)")
+args = parser.parse_args()
+
+CHANNEL_NAME = args.channel
+
+if args.channel is None:
+    print("Error: Please provide a streamer username.")
+    exit(1)
 
 # Enter the number of seconds between every check here.
 # The page usually updates viewer count every 30 seconds it seems
