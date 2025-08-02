@@ -6,13 +6,12 @@
 ```
 pip install -r requirements.txt
 ```
-This script uses a headless Firefox browser via Selenium. You will need to have Firefox installed on your system.
+This script uses a headless Firefox process via Selenium. You will need to have Firefox installed on your system.
 
 ## How to use:
-Change the __CHANNEL_NAME__ variable in _ClownTracker.py_ to the twitch channel of your choice. Only enter the channel name, not the full URL.
-Finally run the script with:
+Open _ClownTracker.py_ and change the __CHANNEL_NAME__ variable to the twitch channel name of your choice. Only enter the channel name, and not the full URL.
+Finally, run the script with:
 ```
 python ClownTracker.py
 ```
-The script will create and continously store all information inside a .csv file inside it's home directory.
-
+Viewer data will be saved continuously to a .csv file in the script’s directory.
