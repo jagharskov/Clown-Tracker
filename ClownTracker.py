@@ -102,7 +102,7 @@ def main():
                 else:
                     change_str = ""               
                     
-                print(f"[ Stream uptime: {uptime} | Script uptime: {formatted_uptime}] Viewers: {viewers}{change_str}")
+                print(f"[Stream uptime: {uptime} | Script uptime: {formatted_uptime}] Viewers: {viewers}{change_str}")
                 with open(csv_file, 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([uptime, viewers])
